@@ -1,0 +1,36 @@
+networks:
+  network:
+    driver: bridge
+
+services:
+  scrapper:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    depends_on:
+       db:
+         condition: service_healthy
+    networks:
+      - network
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+     - POSTGRES_USER=${POSTGRES_USER}
+     - POSTGRES_DB=${POSTGRES_DB}
+     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - '5432:5432'
+    networks:
+      - network
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
