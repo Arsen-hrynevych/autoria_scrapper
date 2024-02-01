@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "autoria-scrapper"
+version = "0.1.0"
+description = ""
+authors = ["ArsenHrynevych <102324797+Arsen-hrynevych@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+sqlalchemy = "^2.0.25"
+requests = "^2.31.0"
+bs4 = "^0.0.2"
+python-dotenv = "^1.0.1"
+apscheduler = "^3.10.4"
+psycopg2-binary = "^2.9.9"
+schedule = "^1.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
